@@ -1,20 +1,10 @@
-import express from "express";
-import dotenv from "dotenv";
+// @ts-ignore
+import connectionDB from "./database/connection";
+import { startServer } from "./controllers/routing";
+connectionDB().then((res: boolean): void => {
+  if (!res) {
+    throw new Error("Error to connect to the database, please check the logs.");
+  }
 
-import connectionDB from "./database/connection.js";
-connectionDB();
-
-dotenv.config();
-
-const app = express();
-const port: string = process.env.PORT;
-
-import type { RequestExpess, ResponseExpress } from "./types/express.ts";
-
-app.get("/", (req: RequestExpess, res: ResponseExpress) => {
-  return res.send("Express + TypeScript Server");
-});
-
-app.listen(port, (): void => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+  startServer();
 });
