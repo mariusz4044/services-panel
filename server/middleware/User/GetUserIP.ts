@@ -1,16 +1,19 @@
 import { Router } from "express";
-import type { RequestExpess, ResponseExpress } from "../../types/express.js";
 
 const router = Router();
 
-router.use((req: RequestExpess, res: ResponseExpress, next: any): void => {
-  const cloudflareIP = req.header("cf-connecting-ip");
+declare module "express-session" {
+  export interface SessionData {
+    userIP: string;
+  }
+}
 
-  req.body.ip = cloudflareIP
+export default router.use((req, res, next): void => {
+  const cloudflareIP: string = req.header("cf-connecting-ip");
+
+  req.session.userIP = cloudflareIP
     ? cloudflareIP
     : req.connection.remoteAddress.replace("::ffff:", "");
 
   next();
 });
-
-export default router;
