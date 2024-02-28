@@ -10,6 +10,13 @@ const userModel = {
   tokens: 2134,
 };
 
-app.provide("$user", reactive(userModel)); // global variable
+const serverURL = `http://localhost:3000`;
+
+const endpoints = {
+  captcha: `${serverURL}/captcha`,
+};
+
+app.provide("$user", reactive(userModel));
+app.provide("$endpoints", endpoints);
 
 app.use(router).mount("#app");

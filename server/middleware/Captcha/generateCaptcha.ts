@@ -5,10 +5,10 @@ import { Buffer } from "buffer";
 
 export default async function generateCaptcha(req): Promise<Captcha> {
   const captcha: svgCaptcha.CaptchaObj = svgCaptcha.create({
-    width: 208,
+    width: 220,
     height: 80,
     background: `transparent`,
-    noise: 6,
+    noise: 5,
   });
 
   req.session.captcha = captcha.text.toLocaleLowerCase();

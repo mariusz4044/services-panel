@@ -8,6 +8,8 @@ import LoginForm from "@/components/Login/LoginForm.vue";
 
 const user = inject("$user");
 const showLoginForm = ref(false);
+
+onMounted(() => {});
 </script>
 
 <template>
@@ -36,7 +38,7 @@ const showLoginForm = ref(false);
           class="px-2 h-10 bg-green-600 rounded font-bold hover:bg-green-700 transition duration-200 flex flex-row items-center justify-center active:scale-95"
           @click="showLoginForm = !showLoginForm"
         >
-          <label>Login / Register</label>
+          <label>Join now</label>
           <i class="fa-solid fa-arrow-right-to-bracket mx-2 relative"></i>
         </button>
         <LoginForm v-if="showLoginForm" />

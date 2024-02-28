@@ -1,5 +1,9 @@
 <script setup>
 import Input from "@/components/Basic/Input.vue";
+import { inject } from "vue";
+
+const endpoints = inject("$endpoints");
+console.log(endpoints);
 </script>
 
 <template>
@@ -28,6 +32,11 @@ import Input from "@/components/Basic/Input.vue";
         class="login-input"
         icon="fa-solid fa-gift"
       />
+      <div
+        class="w-56 bg-gray-900 border-2 border-gray-700 mt-3 rounded flex justify-center"
+      >
+        <img :src="endpoints.captcha" class="w-max" alt="Captcha" />
+      </div>
       <label for="termsCheckbox" class="mt-5 flex items-center">
         <input
           type="checkbox"
