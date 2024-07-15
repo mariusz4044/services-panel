@@ -1,19 +1,6 @@
-import { RegisterBody } from "../../types/express";
 import Referrals from "../../database/models/Referrals";
 import Users from "../../database/models/User";
-
-function makeid(length: number) {
-  let result = "";
-  let characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let charactersLength = characters.length;
-
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-
-  return result;
-}
+import makeID from "../../utils/makeID";
 
 interface RegisterResponse {
   errors?: {
@@ -43,7 +30,7 @@ export default async function ({
   }
 
   if (captcha !== session.captcha.toLocaleLowerCase()) {
-    //If captch is wrong then return error without checking other fields
+    //If captcha is wrong then return error without checking other fields
     errors["captcha"] = "Captcha is wrong!";
     return errors;
   }
@@ -88,7 +75,7 @@ export default async function ({
     login,
     password,
     IP: session.userIP,
-    session_id: makeid(32),
+    session_id: makeID(32),
     tokens: referralsTokens,
     trust_score: existingIP.length * -1,
   });

@@ -13,7 +13,7 @@ body {
 }
 
 #app-view {
-  background: #0a121e;
+  background: #1d1f24;
   margin: 10px;
   width: calc(100dvw - 20px);
   height: calc(100dvh - 4rem - 20px);
