@@ -4,8 +4,9 @@
     "target": "es6",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "sourceMap": true,
-    "outDir": "dist"
+    "sourceMap": false,
+    "outDir": "dist",
+    "noEmit": true,
   },
   "lib": ["es2015"]
 }
